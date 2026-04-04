@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Session Search"
+  short_description: "Search local Codex sessions for resume candidates."
+  default_prompt: "Use $codex-session-search to find the past Codex session related to a task and suggest the best resume command."
