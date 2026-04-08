@@ -12,6 +12,7 @@ Export current Codex session logs to Markdown with inline `jq` commands only. As
 Default behavior:
 
 - Write the export to `~/Downloads` only.
+- Treat requests like "this session" or "current session" as the currently open Codex thread, resolved via `CODEX_THREAD_ID`, not the newest file in `~/.codex/sessions`.
 - Unless the user explicitly asks for the `jq` commands, run them immediately instead of pasting them back first.
 - If writing to `~/Downloads` needs approval in the current sandbox, request approval and keep the destination fixed to `~/Downloads`.
 - After writing, return the output path. Only show a content preview when the user asks for one.
@@ -19,6 +20,7 @@ Default behavior:
 ## Workflow
 
 1. Resolve the source `jsonl` file.
+- For the current open session, use `CODEX_THREAD_ID` to find the matching `jsonl` under `~/.codex/sessions`.
 - For the latest session, use the newest `~/.codex/sessions/**/*.jsonl`.
 - For a known session id, find the matching `jsonl` file under `~/.codex/sessions`.
 - Fail immediately if `src` is empty or the file does not exist.
@@ -41,6 +43,13 @@ Default behavior:
 - Check for pasted secrets or private content.
 
 ## Path Resolution
+
+### Current open session
+
+```sh
+src="$(rg -l --hidden --glob '*.jsonl' "$CODEX_THREAD_ID" ~/.codex/sessions | head -n1)"
+[ -n "$src" ] && [ -f "$src" ] || { echo "No matching current session jsonl found." >&2; exit 1; }
+```
 
 ### Latest session
 
