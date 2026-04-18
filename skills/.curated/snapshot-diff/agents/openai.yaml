@@ -1,0 +1,4 @@
+interface:
+  display_name: "Snapshot Diff"
+  short_description: "Compare before/after images with rasterdiff."
+  default_prompt: "Use $snapshot-diff to compare before.png and after.png and write the diff image to output.png."
