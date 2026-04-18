@@ -1,9 +1,9 @@
 ---
-name: snapshot-diff
-description: Compare before/after screenshots or other raster images with `rasterdiff` to generate a diff image and use the exit status to tell whether pixels changed. Use when Codex needs to verify UI snapshot changes, pixel regressions, or whether two images are visually identical.
+name: screenshot-diff
+description: Compare before/after screenshots or other raster images with `rasterdiff` to generate a diff image and use the exit status to tell whether pixels changed. Use when Codex needs to verify UI screenshot changes, pixel regressions, or whether two images are visually identical.
 ---
 
-# Snapshot Diff
+# Screenshot Diff
 
 Run `rasterdiff` through `npx` to compare two raster images and write a diff image.
 
@@ -17,7 +17,7 @@ Run `rasterdiff` through `npx` to compare two raster images and write a diff ima
 
 ## Check Before Running
 
-- Prefer PNG for deterministic snapshot comparisons.
+- Prefer PNG for deterministic screenshot comparisons.
 - Make sure both images have the same dimensions and represent the same crop or viewport.
 - Do not overwrite either input file with the diff output.
 
